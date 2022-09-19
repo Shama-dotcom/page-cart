@@ -9,7 +9,7 @@ const Navbar = ({ setShow, size }) => {
   const navigate = useNavigate();
 
   const redirect = () => {
-    navigate('/cart');
+    navigate('/cartpage');
   };
 
   const handleClick = () => {
