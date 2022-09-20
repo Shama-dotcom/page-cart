@@ -1,25 +1,81 @@
 import React, { useState } from 'react';
 import { FaCartPlus } from 'react-icons/fa';
 
+
 import './Card.css';
 
 const Cards = ({ item, handleClick }) => {
   const { title, price, description, image, category, rating, size, stock } =
     item;
 
-  const [quantity, setQuantity] = useState();
+    const [quantity, setQuantity] = useState(0);
 
-  const handleDecrement = () => {
-    setQuantity((prevCount) => prevCount - 1);
-    console.log('clicked');
-  };
+    const handleDecrement = () => {
+      setQuantity(quantity - 1);
+      if (quantity<= 0) {
+        alert('Select atleast one')
+    }
+      console.log('clicked');
+    };
+  
+    const handleIncrement = () => {
+      setQuantity(quantity + 1);
+      console.log('clicked');
+    };
+  
+  // const [data, setData] = useState(list);
+  // const filterResult = (item) => {
+  //     const result= list.filter((curData) => {
+  //         return curData.size === item;
+  //     });
+  //     setData(result);
+  // }
+  // const [localProducts, setLocalProducts] = useState([]);
+  // const [searchTerm, setSearchTerm] = useState('');
 
-  const handleIncrement = () => {
-    setQuantity((prevCount) => prevCount + 1);
-    console.log('clicked');
-  };
+  // useEffect(() => {
+  //   setLocalProducts(productList);
+  // }, [productList]);
+
+
+  // useEffect(() => {
+  //   // search item
+  //   if (searchTerm.length > 0) {
+  //     setLocalProducts(
+  //       productList?.filter((item) => item?.title.includes(searchTerm))
+  //     );
+  //   } else {
+  //     setLocalProducts(productList);
+  //   }
+  // }, [searchTerm]);
+
+  // const onFilterValueChanged = (val) => {
+  //   console.log('val', val);
+  //   if (val) {
+  //     setLocalProducts(productList?.filter((item) => item?.size === val));
+  //   }
+  // };
+
+  // const onFilterCategoryChanged = (val) => {
+  //   console.log('val', val);
+  //   if (val) {
+  //     setLocalProducts(
+  //       productList?.filter((item) => item?.category?.toLowerCase() === val)
+  //     );
+  //   }
+  // };
+
+  // console.log('searchTerm', searchTerm);
   return (
     <>
+    
+{/* 
+<Header
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            onFilterValueChanged={onFilterValueChanged}
+            onFilterCategoryChanged={onFilterCategoryChanged}
+          /> */}
       <div className="cards">
         <div className="image_box">
           {' '}
@@ -32,9 +88,9 @@ const Cards = ({ item, handleClick }) => {
           <h5>
             Quantity:{' '}
             <div>
-              <button onClick={handleDecrement}>+</button>
+              <button onClick={handleDecrement}>-</button>
               <button>{quantity}</button>
-              <button onClick={handleIncrement}>-</button>
+              <button onClick={handleIncrement}>+</button>
             </div>
           </h5>
           <button onClick={() => handleClick(item)}>
@@ -73,27 +129,3 @@ const Cards = ({ item, handleClick }) => {
 };
 
 export default Cards;
-
-// <select onChange={(e) => onFilterQuantity(e.target.value)}>
-//               <option>0</option>
-//               <option >1</option>
-//               <option>2</option>
-//               <option>3</option>
-//               <option>4</option>
-//               <option>5</option>
-//               <option>6</option>
-//               <option>7</option>
-//               <option>8</option>
-//               <option>9</option>
-//               <option>10</option>
-//               <option>11</option>
-//               <option>12</option>
-//               {/* <option>13</option>
-//               <option>14</option>
-//               <option>15</option>
-//               <option>16</option>
-//               <option>17</option>
-//               <option>18</option>
-//               <option>19</option>
-//               <option>20</option> */}
-//             </select>
